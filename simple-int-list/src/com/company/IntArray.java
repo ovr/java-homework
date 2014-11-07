@@ -1,51 +1,44 @@
 package com.company;
 
-public class IntArray {
+import java.util.Iterator;
+
+public class IntArray implements Iterable {
 
     private int[] elements = null;
 
     private int lastKey = 0;
 
-    private int count;
-
-    public int getCount()
-    {
-        return this.count;
+    public int getCount() {
+        return this.elements.length;
     }
 
-    public IntArray(final int count)
-    {
+    public IntArray(int count) {
         this.elements = new int[count];
 
-        for ( int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             this.elements[i] = 0;
         }
-
-        this.count = count;
     }
 
-    public void resize(final int size)
-    {
+    public void resize(final int size) {
         int[] elements = new int[size];
 
-        System.arraycopy(this.elements, 0, elements, 0, this.count);
+        System.arraycopy(this.elements, 0, elements, 0, this.elements.length);
 
-        for (int i = count; i < size; i++) {
+        for (int i = this.elements.length; i < size; i++) {
             elements[i] = 0;
         }
 
         this.elements = elements;
-        this.count = size;
     }
 
-    public void add(int value)
-    {
-        if (this.lastKey+1 > this.count-1) {
-            this.resize(this.count*2);
+    public void add(int value) {
+        if (this.lastKey + 1 > this.elements.length) {
+            this.resize(this.elements.length * 2);
         }
 
-        this.lastKey++;
         this.elements[this.lastKey] = value;
+        this.lastKey++;
     }
 
     public int summ()
@@ -57,5 +50,22 @@ public class IntArray {
         }
 
         return result;
+    }
+
+    public void iterate(MyInterface inter)
+    {
+        for (int element: this.elements) {
+            inter.method(element);
+        }
+    }
+
+    public int get(int index)
+    {
+        return this.elements[index];
+    }
+
+    @Override
+    public IntArrayIterator iterator() {
+        return new IntArrayIterator(this);
     }
 }

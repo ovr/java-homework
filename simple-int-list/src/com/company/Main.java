@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.Iterator;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -31,5 +34,23 @@ public class Main {
         System.out.println(elements.getCount());
 
         System.out.println("Summ " + elements.summ());
+
+        System.out.println("Iterator");
+
+
+        int summ = 0;
+
+        IntArrayIterator iter = elements.iterator();
+        while (iter.hasNext()){
+            Integer tmp = iter.next();
+            summ += tmp;
+
+            System.out.println(tmp);
+        }
+
+        MyPlusFunction mapPlusFunction = new MyPlusFunction();
+        elements.iterate(mapPlusFunction);
+
+        System.out.println("Summ " + mapPlusFunction.getResult());
     }
 }
