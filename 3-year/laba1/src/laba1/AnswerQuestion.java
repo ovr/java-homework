@@ -1,56 +1,28 @@
 package laba1;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+public class AnswerQuestion
+{
+    protected String question;
 
-/**
- * Класс для работы с чтение вопросов и записью ответов
- */
-public class AnswerQuestion {
-    protected String inputFilePath;
-    protected String outFilePath;
+    protected String answer;
 
-
-    public AnswerQuestion(String inputFilePath, String outFilePath)
+    AnswerQuestion(String question)
     {
-        this.inputFilePath = inputFilePath;
-        this.outFilePath = outFilePath;
+        this.question = question;
     }
 
-    public void work() throws IOException {
-        PrintWriter bw;
-        BufferedReader wr;
+    public String getQuestion()
+    {
+        return this.question;
+    }
 
-        /**
-         * Входной
-         */
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(this.inputFilePath)));
+    public void setAnswer(String answer)
+    {
+        this.answer = answer;
+    }
 
-        /**
-         * Выходной
-         */
-        bw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.outFilePath))));
-
-        /**
-         * Читаем консоль
-         */
-        wr = new BufferedReader(new InputStreamReader(System.in));
-
-        String question, answer;
-
-        while((question = br.readLine()) != null) {
-
-            System.out.println("Вопрос: " + question);
-            bw.println("Вопрос: " + question);
-
-            System.out.println("Введите ответ:");
-
-            answer = wr.readLine();
-            bw.println("Ответ: " + answer );
-
-        }
-
-        bw.close();
-        wr.close();
+    public String getAnswer()
+    {
+        return this.answer;
     }
 }

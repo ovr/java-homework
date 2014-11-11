@@ -5,8 +5,10 @@ public class Laba1 {
     public static void main(String[] args)
     {
         try {
-            AnswerQuestion anserQuestion = new AnswerQuestion("in.txt", "out.txt");
+            AnswerQuestionService anserQuestion = new AnswerQuestionService("in.txt", "out.txt");
+            anserQuestion.readQuestions();
             anserQuestion.work();
+            anserQuestion.write();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
