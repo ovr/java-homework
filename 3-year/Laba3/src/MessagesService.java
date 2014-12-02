@@ -26,6 +26,9 @@ public class MessagesService {
         assert files != null;
         for (File file : files) {
             if (file.isFile()) {
+                /**
+                 * Проверяем файлы по mime типу
+                 */
                 if (Files.probeContentType(file.toPath()).equals("application/xml")) {
                     System.out.println(file.getName());
                     Message msg = XmlToMessage.convert(file.getAbsolutePath());
@@ -39,6 +42,13 @@ public class MessagesService {
         System.out.println(outFile.getAbsolutePath());
         PrintWriter out = new PrintWriter(new FileWriter(outFile.getAbsolutePath()));
 
+        /**
+         * Фильтрованные списки по уникальности
+         *
+         * Отправители
+         * Получатели
+         * Заголовки
+         */
         ArrayList<String> outUsers = new ArrayList<>();
         ArrayList<String> intUsers = new ArrayList<>();
         ArrayList<String> headings = new ArrayList<>();

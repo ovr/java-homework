@@ -11,6 +11,10 @@ public class XmlToMessage {
 
         String content;
         String temp;
+
+        /**
+         * Для разбития строки на token (expression or, statement)
+         */
         StringTokenizer st;
 
         Message msg = new Message();
